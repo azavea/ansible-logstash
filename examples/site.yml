@@ -1,0 +1,16 @@
+---
+- hosts: all
+  roles:
+    - { role: "azavea.logstash" }
+
+  tasks:
+    - name: Add Logstash user to service group
+      user: name=logstash
+            append=yes
+            groups=adm
+            state=present
+
+    - name: Configure Logstash
+      template: src=templates/logstash.conf.j2 dest=/etc/logstash/conf.d/logstash.conf
+      notify:
+        - Restart Logstash
