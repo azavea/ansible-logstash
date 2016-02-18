@@ -12,4 +12,5 @@ galaxy_info:
   categories:
   - system
   - monitoring
-dependencies: []
+dependencies:
+  - { role: "azavea.java" }
